@@ -1,0 +1,65 @@
+<div>
+  <mat-card (click)="dispNote = !dispNote" *ngIf="!dispNote">
+    <div class="t-div">
+      <input type="text" class="title" placeholder="Take a note..." />
+      <i class="material-icons-outlined t-icons">check</i>
+      <i class="material-icons-outlined t-icons">image</i>
+    </div>
+  </mat-card>
+  <mat-card class="n-mat" *ngIf="dispNote" [ngStyle]="{ 'background-color': setColor }">
+  <div style="position: absolute;top: 10px;left: 10px;cursor: pointer;" >
+    <i></i>
+  </div>
+  <div class="pin-class">
+    <div>
+    <i matTooltip="Pin the note" class="material-icons-outlined i-pin"(click)="pinned=!pinned;isarchive=false"
+      *ngIf="!pinned">push_pin</i>
+    <i matTooltip="Unpin the note" class="material-icons i-pin" (click)="pinned=!pinned;isarchive=false"
+      *ngIf="pinned">push_pin</i>
+    </div>
+  </div>
+  <img  class= "img"  style="width: 100%;">
+    <form class="example-form" [formGroup]="NotesForm">  
+      
+      <div class="t-div t-main">
+        <input type="text" class="title" id="temp" formControlName="title" placeholder="Title"
+          (change)="TitleNote = checkMenu($event)" [ngModel]="TitleNote" [ngStyle]="{ 'background-color': setColor }"/>
+      </div>
+      
+      <div class="n-div">
+        <textarea id="notes" class="notes" formControlName="Desc" placeholder="Take a note..."
+          (change)="DescNote = checkMenu($event)" [ngModel]="DescNote" (keyup)="autogrow()"
+          [ngStyle]="{ 'background-color': setColor }" ></textarea>
+      </div>            
+    </form>
+  </mat-card>
+  <div>
+    <div class="i-main" *ngIf="dispNote" [ngStyle]="{ 'background-color': setColor }" >
+      <div class="i-div">
+        <i class="material-icons-outlined" matTooltip="Remind me" >notifications_none</i>
+        <i class="material-icons-outlined" matTooltip="Collaborator">person_add_alt_1</i>
+        <i class="material-icons-outlined" matTooltip="Change Color" [matMenuTriggerFor]="Color">color_lens</i>
+        <mat-menu #Color="matMenu" class="color-menu" yPosition="above">
+          <div class="a-color" *ngFor="let color of colourArr" matTooltip="{{ color.tooltip }}"
+            (click)="setColor = color.colour" [ngStyle]="{ 'background-color': color.colour }" >
+            <i class="material-icons" *ngIf="setColor == color.colour">check</i>
+          </div>
+        </mat-menu>
+        <!-- <label for="image">
+        <input type="file" name="image" class="upload" accept="image/*" id="image" style="display:none;" (change)="setImage($event)" /> -->
+        <i class="material-icons-outlined" matTooltip="Add image" >image</i>
+      <!-- </label> -->
+        <i class="material-icons-outlined" [matTooltip]="isarchive?'Unarchive':'Archive'"(click)="isarchive=!isarchive;pinned=false">archive</i>
+        <i class="material-icons-outlined more" matTooltip="More" [matMenuTriggerFor]="menu" >more_vert</i>
+        <mat-menu #menu="matMenu" class="note-option">
+          <button mat-menu-item> Delete Label</button>
+          <button mat-menu-item> Add Label </button>
+          <button mat-menu-item >Make a copy</button>
+        </mat-menu>
+      </div>
+      <button mat-button (click)="AddNote(); TitleNote = ''; DescNote = ''; dispNote = !dispNote;setColor='white';pinned=false;isarchive=false;">
+        Close
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="over-con">
+  <div style="display: flex;justify-content: space-between;">
+    <i></i>
+    <i></i>
+    <div> 
+  <i style="cursor: pointer" class="material-icons-outlined i-pin" *ngIf="!notes['is_Pin']" (click)="$event.stopPropagation(); pin(notes)">push_pin</i>
+  <i style="cursor: pointer" class="material-icons i-pin" *ngIf="notes['is_Pin']" (click)="$event.stopPropagation(); pinned = !pinned; pin(notes)">push_pin</i>
+  </div>
+</div>
+    <div>      
+      <div class="i-div">
+        <i class="material-icons-outlined" matTooltip="Remind me" >notifications_none</i>                  
+        <i class="material-icons-outlined" matTooltip="Collaborator">person_add_alt_1</i>
+        <i class="material-icons-outlined" matTooltip="Change Color" [matMenuTriggerFor]="Color"
+          (click)="$event.stopPropagation()" >color_lens</i>
+        
+          <mat-menu #Color="matMenu" class="color-menu" yPosition="above">
+          <div class="a-color" *ngFor="let color of colourArr" matTooltip="{{ color.tooltip }}"
+            [ngStyle]="{ 'background-color': color.colour }" (click)="setColour(notes, color.colour)">
+            <i class="material-icons" *ngIf="color.colour == notes['colour']" >check</i>
+          </div>
+
+        </mat-menu>
+        
+        <i class="material-icons-outlined">image</i>        
+
+        <i class="material-icons-outlined" [matTooltip]="notes['archive'] ? 'Unarchive' : 'Archive'"
+          *ngIf="!notes['archive']"
+          (click)="archive(notes); pinned = false; $event.stopPropagation()">archive</i>
+
+        <i class="material-icons-outlined" [matTooltip]="notes['archive'] ? 'Unarchive' : 'Archive'"
+        *ngIf="notes['archive']"
+        (click)="archive(notes); pinned = false; $event.stopPropagation()">unarchive</i>
+
+        <i class="material-icons-outlined more" matTooltip="More" [matMenuTriggerFor]="menu"
+        (click)="$event.stopPropagation();">more_vert</i>
+     
+        <mat-menu #menu="matMenu" class="i-option">
+          <button mat-menu-item (click)="AddTrash(notes)"> Delete Note </button>          
+        </mat-menu>
+      </div>
+    </div>
+  </div>

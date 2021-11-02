@@ -1,0 +1,58 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px !important;
+    width: 30%;
+    position: relative;
+    min-width: 725px;
+    margin-left: auto;
+    margin-top: 40px;
+    margin-right: auto;
+    align-content: center;    
+}
+
+span{
+    font-size: larger;
+}
+
+.mat-title {
+    margin-top: 40px;
+    margin-left: 25px;
+}
+
+.card-title{
+    margin-top: 40px;   
+}
+
+.MatCard-input {
+    display: flex;    
+    gap: 1rem;
+    margin-top: 15px;
+    margin-left: 10px;
+    padding: 0px;
+    font-size: small;
+}
+.password-hint{
+    display: flex;
+    margin-top: -12px;
+    font-size: 12px;
+    padding-left: 10px;
+}
+.button-input{
+    display: flex;       
+    justify-content: space-between;
+    margin-left: 5px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+.right-container{
+    img{
+      width:250px;
+    }
+    text-align: center;
+    p{
+        margin-bottom: 0px;
+    }    
+}

@@ -1,0 +1,66 @@
+<mat-card class="container">
+    <div class="mat-title">
+        <mat-card-title class="card-title">
+            <span style="color: rgb(66,133, 244);">F</span>
+            <span style="color: rgb(234, 67, 53);">u</span>
+            <span style="color: rgb(251, 188, 5);">n</span>
+            <span style="color: rgb(66,133, 244);">d</span>
+            <span style="color: rgb(52, 168, 83);">o</span>
+            <span style="color: rgb(234, 67, 53);">o</span>
+        </mat-card-title>
+        <mat-card-title class="card-title">Create your Fundoo Account</mat-card-title>
+    
+        <form [formGroup]="registrationForm">
+            <div class="MatCard-input">
+                <mat-form-field appearance="outline" >
+                    <mat-label for = "firstName">First Name</mat-label>
+                    <input matInput placeholder="First Name" formControlName="firstName">
+                    <mat-error *ngIf="registrationForm.get('firstName')?.errors?.required">Invalid FirstName</mat-error>                                      
+                </mat-form-field>
+                <mat-form-field appearance="outline" >
+                    <mat-label for = "lastName">Last Name</mat-label>
+                    <input matInput placeholder="Last Name" formControlName="lastName">
+                    <mat-error *ngIf="registrationForm.get('lastName')?.errors?.required">Invalid LastName </mat-error>                                                                              
+                </mat-form-field>
+                
+            </div>
+            <div class="MatCard-input ">                    
+                <mat-form-field style="width: 200%;" appearance="outline">
+                    <mat-label for = "email">Email Address</mat-label>
+                    <input  matInput placeholder="Email" formControlName="email"> 
+                    <mat-error *ngIf="registrationForm.get('email')?.errors?.required">Invalid Email</mat-error>                                                         
+                    <mat-hint>You'll need to confirm this email belongs to you</mat-hint>
+                </mat-form-field>
+            </div>
+
+            <div class="MatCard-input">                 
+                <mat-form-field appearance="outline">
+                    <mat-label for = "password">Password</mat-label>
+                    <input matInput placeholder="password" formControlName="password" type="password">
+                    <mat-error *ngIf="registrationForm.get('password')?.errors?.required">Invalid Password</mat-error>                                                               
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label for = "confirmPassword">Confirm Password</mat-label>
+                    <input matInput placeholder="Re-enter Password" formControlName="confirmPassword" type="password">
+                    <mat-error *ngIf="registrationForm.get('confirmPassword')?.errors?.required">Invalid Password</mat-error>     
+                </mat-form-field>                                            
+            </div>  
+            <div class="password-hint ">
+                <mat-hint >Use 8 or more characters with a mix of letters, numbers & symbols
+                </mat-hint> 
+            </div>  
+            <div class="MatCard-input">
+                <mat-checkbox class="example-margin">Show Password</mat-checkbox>                    
+            </div>
+            <div class="button-input">
+                <a routerLink="/login"><button mat-button color="primary" >Sign in instead</button></a>
+                <button mat-raised-button color="primary" (click)="Register()">Register</button>
+            </div>            
+        </form>   
+    </div>
+    <div class="right-container">
+        <img src="../../../assets/images/account-logo.svg" alt="">
+        <p>One account. All of Fundoo </p>
+        <p> working for you.</p>
+    </div>
+</mat-card>

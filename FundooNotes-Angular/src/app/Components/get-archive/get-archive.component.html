@@ -1,0 +1,11 @@
+<div class="overall-div">
+    <mat-card class="card-disp" (click)="openNoteDialog(notes)"
+        [ngStyle]="{ 'background-color': notes['color'] }" *ngFor="let notes of archiveNotes">
+    <div>
+      <img src='{{notes["image"]}}' alt="" *ngIf="notes['image']!=null && notes['image']!=' '" style="width: 100%;">
+      </div>
+    <div class="d-tit" style="font-weight: bold;"> {{ notes["title"] }} </div>
+    <div class="d-con" style="margin-bottom: 15px;"> {{ notes["description"] }} </div>
+    <app-icon [notes]= "notes"></app-icon>
+    </mat-card>
+</div>
